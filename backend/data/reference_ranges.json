@@ -1,0 +1,37 @@
+{
+  "hemoglobin": {
+    "unit": "g/dL",
+    "low": 12.0,
+    "high": 17.5,
+    "critical_low": 7.0,
+    "critical_high": 20.0
+  },
+  "wbc": {
+    "unit": "cells/uL",
+    "low": 4000,
+    "high": 11000,
+    "critical_low": 2000,
+    "critical_high": 30000
+  },
+  "platelet count": {
+    "unit": "cells/uL",
+    "low": 150000,
+    "high": 450000,
+    "critical_low": 50000,
+    "critical_high": 1000000
+  },
+  "glucose": {
+    "unit": "mg/dL",
+    "low": 70,
+    "high": 99,
+    "critical_low": 40,
+    "critical_high": 400
+  },
+  "creatinine": {
+    "unit": "mg/dL",
+    "low": 0.6,
+    "high": 1.2,
+    "critical_low": 0.3,
+    "critical_high": 5.0
+  }
+}
