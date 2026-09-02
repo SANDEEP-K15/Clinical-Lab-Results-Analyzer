@@ -4,7 +4,7 @@ Explainable AI Laboratory Result Classification System — a full-stack web appl
 
 ## Repository
 
-> **GitHub:** Replace with your public repo URL after pushing, e.g. `https://github.com/your-username/clinical-lab-ai-analyzer`
+> **GitHub:** Replace with your public repo URL after pushing, e.g. `https://github.com/SANDEEP-K15/clinical-lab-ai-analyzer`
 
 ## Overview
 
@@ -27,7 +27,7 @@ Healthcare providers need to quickly identify abnormal lab results, understand t
 - MCP server with laboratory analysis tools
 - Reference range lookup from configurable JSON database
 
-## Demo Screen Short
+## Demo Screensort
 <img width="944" height="475" alt="Screenshot 2026-09-02 143239" src="https://github.com/user-attachments/assets/4bc827a2-f95a-4594-99a7-81134389bc3e" />
 <img width="918" height="476" alt="Screenshot 2026-09-02 143325" src="https://github.com/user-attachments/assets/3636e2c9-5632-49f9-ab4b-b2652f702c5b" />
 <img width="536" height="413" alt="Screenshot 2026-09-02 143336" src="https://github.com/user-attachments/assets/83497a3a-b9c9-4e81-a1e2-c1692c30b324" />
