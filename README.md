@@ -2,10 +2,6 @@
 
 Explainable AI Laboratory Result Classification System — a full-stack web application that analyzes laboratory test results, classifies them as Normal / Warning / Critical, routes results by severity, and uses the Groq API to generate clinically relevant, explainable interpretations.
 
-## Repository
-
-> **GitHub:** Replace with your public repo URL after pushing, e.g. `https://github.com/SANDEEP-K15/clinical-lab-ai-analyzer`
-
 ## Overview
 
 Clinical laboratories produce many test results every day. Healthcare providers need a fast way to identify abnormal results and understand their significance. This application accepts lab results via manual input or CSV upload, validates them, looks up reference ranges, classifies each result deterministically, and generates AI-powered explanations for every result.
