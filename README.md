@@ -2,6 +2,10 @@
 
 Explainable AI Laboratory Result Classification System — a full-stack web application that analyzes laboratory test results, classifies them as Normal / Warning / Critical, routes results by severity, and uses the Groq API to generate clinically relevant, explainable interpretations.
 
+## Repository
+
+> **GitHub:** Replace with your public repo URL after pushing, e.g. `https://github.com/your-username/clinical-lab-ai-analyzer`
+
 ## Overview
 
 Clinical laboratories produce many test results every day. Healthcare providers need a fast way to identify abnormal results and understand their significance. This application accepts lab results via manual input or CSV upload, validates them, looks up reference ranges, classifies each result deterministically, and generates AI-powered explanations for every result.
@@ -47,7 +51,7 @@ flowchart TD
 |-------|-------------|
 | Frontend | React, Vite, JavaScript, Axios, CSS |
 | Backend | Python 3.10+, FastAPI, Pydantic, Uvicorn |
-| AI | Groq API (llama-3.3-70b-versatile) |
+| AI | Groq API (`openai/gpt-oss-20b`) |
 | Agent | Python MCP SDK |
 | Data | Pandas, JSON reference ranges |
 | Testing | Pytest, FastAPI TestClient, HTTPX |
@@ -72,11 +76,26 @@ The MCP server (`backend/mcp/server.py`) exposes three tools:
 
 The lab agent communicates through an MCP client (`backend/mcp/client.py`).
 
+## AI Provider — Why Groq?
+
+This project uses **[Groq](https://console.groq.com)** as the GenAI provider.
+
+| Reason | Detail |
+|--------|--------|
+| Free tier | Easy to get started with a free API key |
+| Fast inference | Low-latency responses for demo and batch analysis |
+| OpenAI-compatible API | Simple Python SDK integration |
+| Structured JSON output | Reliable explanation parsing for every lab result |
+
+**Model:** `openai/gpt-oss-20b` (set via `GROQ_MODEL` in `.env`)
+
+**Important:** Classification (Normal / Warning / Critical) is **deterministic** using reference ranges. Groq is used **only for explanations**, not for deciding severity.
+
 ## Groq Integration
 
-- API key stored in `backend/.env` (never exposed to frontend)
-- Model: `llama-3.3-70b-versatile` (configurable via `GROQ_MODEL`)
-- LLM generates explanations only — severity is determined deterministically
+- API key stored in `backend/.env` (never exposed to the frontend)
+- Model: `openai/gpt-oss-20b` (configurable via `GROQ_MODEL`)
+- LLM generates explanations for **every** result — including Normal
 - Retry once on parse failure; safe fallback if Groq is unavailable
 
 ## Dataset
@@ -138,7 +157,9 @@ clinical-lab-ai-analyzer/
 │   ├── normal_labs.csv
 │   ├── warning_labs.csv
 │   ├── critical_labs.csv
-│   └── mixed_labs.csv
+│   ├── mixed_labs.csv
+│   └── kaggle_sample.csv
+├── DEMO_TESTING_GUIDE.md
 └── README.md
 ```
 
@@ -175,7 +196,7 @@ npm install
 
 ```env
 GROQ_API_KEY=your_api_key_here
-GROQ_MODEL=llama-3.3-70b-versatile
+GROQ_MODEL=openai/gpt-oss-20b
 FRONTEND_URL=http://localhost:5173
 BACKEND_URL=http://localhost:8000
 ```
@@ -185,7 +206,15 @@ BACKEND_URL=http://localhost:8000
 ```bash
 cd backend
 venv\Scripts\activate   # Windows
-uvicorn main:app --reload
+
+# Recommended — avoids endless reload from venv/OneDrive:
+python run_server.py
+
+# Or double-click:
+# start.bat
+
+# Simple (no auto-reload):
+# uvicorn main:app --host 127.0.0.1 --port 8000
 ```
 
 - API: http://localhost:8000
@@ -258,27 +287,52 @@ Glucose,180,mg/dL
 
 ## Testing
 
+### Automated tests (backend)
+
 ```bash
 cd backend
 pytest -v
 ```
 
-Test with demo CSVs:
-- `test_data/normal_labs.csv` — all NORMAL results
-- `test_data/warning_labs.csv` — WARNING results
-- `test_data/critical_labs.csv` — CRITICAL results
-- `test_data/mixed_labs.csv` — mixed severity routing demo
+Runs 39+ unit and API tests with mocked Groq (no live API calls during tests).
+
+### Manual UI demo
+
+1. Start backend: `cd backend && python run_server.py`
+2. Start frontend: `cd frontend && npm run dev`
+3. Open http://localhost:5173
+4. Upload each CSV from `test_data/` and click **Analyze CSV**
+
+| CSV File | Expected Result |
+|----------|-----------------|
+| `test_data/normal_labs.csv` | All 5 results → **NORMAL** |
+| `test_data/warning_labs.csv` | All 5 results → **WARNING** |
+| `test_data/critical_labs.csv` | All 5 results → **CRITICAL** |
+| `test_data/mixed_labs.csv` | Mixed severities, ordered Critical → Warning → Normal |
+| `test_data/kaggle_sample.csv` | 3 results from real Kaggle dataset |
+
+### Quick manual input test
+
+| Test Name | Value | Unit | Expected |
+|-----------|-------|------|----------|
+| Hemoglobin | 14.5 | g/dL | NORMAL |
+| Hemoglobin | 8.2 | g/dL | WARNING |
+| Hemoglobin | 6.5 | g/dL | CRITICAL |
+
+### Full demo script
+
+See **[DEMO_TESTING_GUIDE.md](DEMO_TESTING_GUIDE.md)** for a step-by-step presentation guide with expected UI output for every test case.
 
 ## Explainable AI
 
 Every result card displays:
 - **Value** and **Unit**
 - **Reference Range** (or "unavailable")
-- **Severity** badge with text label
-- **Why was this flagged?**
+- **Severity** badge with text label (not color-only)
+- **Why is this normal?** / **Why was this flagged?** (label changes by severity)
 - **What does this mean?** (clinical significance)
 - **Suggested next step**
-- **Disclaimer**
+- **Disclaimer** (educational use only)
 
 ## Error Handling
 

@@ -2,6 +2,14 @@ export default function ExplanationCard({ explanation, severity }) {
   if (!explanation) return null;
 
   const isFallback = explanation.summary?.includes('temporarily unavailable');
+  const sev = severity?.toUpperCase();
+
+  const whyHeading = {
+    NORMAL: 'WHY IS THIS NORMAL?',
+    WARNING: 'WHY WAS THIS FLAGGED?',
+    CRITICAL: 'WHY WAS THIS FLAGGED?',
+    UNKNOWN: 'WHY IS THE STATUS UNKNOWN?',
+  }[sev] || 'CLASSIFICATION REASON';
 
   return (
     <div className="explanation-card">
@@ -12,7 +20,7 @@ export default function ExplanationCard({ explanation, severity }) {
       )}
 
       <div className="explanation-section">
-        <h4>WHY WAS THIS FLAGGED?</h4>
+        <h4>{whyHeading}</h4>
         <p>{explanation.why_flagged}</p>
       </div>
 

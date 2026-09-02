@@ -42,9 +42,23 @@ FALLBACK_EXPLANATION = Explanation(
 
 class LLMService:
     def __init__(self):
-        api_key = os.getenv("GROQ_API_KEY")
-        self.model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
-        self.client = Groq(api_key=api_key) if api_key else None
+        self._client = None
+        self.model = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
+
+    def _get_model(self) -> str:
+        return os.getenv("GROQ_MODEL", self.model)
+
+    @property
+    def client(self):
+        """Lazy-init Groq client so .env is loaded before first use."""
+        if self._client is None:
+            api_key = os.getenv("GROQ_API_KEY")
+            if api_key:
+                self._client = Groq(api_key=api_key)
+                logger.info("Groq client initialized with model %s", self.model)
+            else:
+                logger.warning("GROQ_API_KEY not set in environment")
+        return self._client
 
     def _build_user_prompt(
         self,
@@ -103,13 +117,14 @@ Return JSON with:
             try:
                 logger.info("LLM request for %s (attempt %d)", test_name, attempt + 1)
                 response = self.client.chat.completions.create(
-                    model=self.model,
+                    model=self._get_model(),
                     messages=[
                         {"role": "system", "content": SYSTEM_PROMPT},
                         {"role": "user", "content": user_prompt},
                     ],
                     temperature=0.3,
                     max_tokens=1024,
+                    response_format={"type": "json_object"},
                 )
                 content = response.choices[0].message.content or ""
                 parsed = self._parse_response(content)
