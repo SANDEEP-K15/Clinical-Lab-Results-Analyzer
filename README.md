@@ -100,7 +100,7 @@ This project uses **[Groq](https://console.groq.com)** as the GenAI provider.
 
 ## Groq Integration
 
-- API key stored in `backend/.env` (never exposed to the frontend)
+- API key stored in `backend/.env` 
 - Model: `openai/gpt-oss-20b` (configurable via `GROQ_MODEL`)
 - LLM generates explanations for **every** result — including Normal
 - Retry once on parse failure; safe fallback if Groq is unavailable
