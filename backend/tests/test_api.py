@@ -116,3 +116,27 @@ class TestAPI:
             assert max(critical_indices) < min(warning_indices)
         if warning_indices and normal_indices:
             assert max(warning_indices) < min(normal_indices)
+
+    def test_kaggle_dataset_info(self):
+        response = client.get("/dataset/info")
+        assert response.status_code == 200
+        data = response.json()
+        assert "pinuto/laboratory-test-results-anonymized-dataset" in data.get("source_url", "")
+
+    def test_kaggle_sample_endpoint(self):
+        response = client.get("/dataset/sample")
+        assert response.status_code == 200
+        data = response.json()
+        assert len(data["labs"]) >= 3
+
+    def test_analyze_kaggle_sample_format(self):
+        response = client.post("/analyze_labs", json={
+            "labs": [
+                {"test_name": "Hemoglobin", "value": 12.9, "unit": "g/dL"},
+                {"test_name": "Lökosit", "value": 6.37, "unit": "10^3/uL"},
+                {"test_name": "Trombosit", "value": 267, "unit": "10^3/uL"},
+            ]
+        })
+        assert response.status_code == 200
+        data = response.json()
+        assert data["summary"]["normal"] == 3

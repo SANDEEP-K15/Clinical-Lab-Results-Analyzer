@@ -81,13 +81,40 @@ The lab agent communicates through an MCP client (`backend/mcp/client.py`).
 
 ## Dataset
 
-This project uses the Kaggle dataset: **Laboratory Test Results – Anonymized Dataset**
+This project uses the Kaggle dataset: **[Laboratory Test Results – Anonymized Dataset](https://www.kaggle.com/datasets/pinuto/laboratory-test-results-anonymized-dataset)** by pinuto.
 
-1. Download from [Kaggle](https://www.kaggle.com/datasets)
-2. Place at `data/kaggle/laboratory_test_results.csv`
-3. Run preprocessing: `python scripts/preprocess_dataset.py`
+| Item | Value |
+|------|-------|
+| Source file | `data/kaggle/lab_test_results_public.csv` |
+| Rows | 27 anonymized lab results |
+| Columns | Date, Test_Name, Result, Unit, Reference_Range, Status, Comment, etc. |
 
-See `data/kaggle/README.md` for detailed instructions.
+### Download
+
+```bash
+pip install kaggle
+python scripts/download_dataset.py
+```
+
+Or download manually from the [Kaggle page](https://www.kaggle.com/datasets/pinuto/laboratory-test-results-anonymized-dataset) and place `lab_test_results_public.csv` in `data/kaggle/`.
+
+### Preprocess
+
+```bash
+python scripts/preprocess_dataset.py
+```
+
+### How the dataset is used
+
+- **Inspection** — `dataset_summary.json` with row counts and status distribution
+- **Test name aliases** — maps Kaggle names (`Lökosit`, `Trombosit`) to app reference keys
+- **Unit conversion** — Kaggle `10^3/uL` → `cells/uL` for WBC and platelets
+- **Demo CSV** — `test_data/kaggle_sample.csv` extracted from real Kaggle rows
+- **API endpoints** — `GET /dataset/info`, `/dataset/tests`, `/dataset/sample`
+
+Reference ranges for classification remain in `backend/data/reference_ranges.json` (not taken from Kaggle).
+
+See `data/kaggle/README.md` for full details.
 
 ## Project Structure
 

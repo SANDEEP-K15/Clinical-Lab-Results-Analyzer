@@ -34,3 +34,13 @@ class TestReferenceService:
         result = self.service.lookup("WBC", "cells/uL")
         assert result["found"] is True
         assert result["critical_low"] == 2000
+
+    def test_kaggle_alias_lokosit(self):
+        result = self.service.lookup("Lökosit", "10^3/uL", value=6.37)
+        assert result["found"] is True
+        assert result["converted_value"] == 6370.0
+
+    def test_kaggle_alias_trombosit(self):
+        result = self.service.lookup("Trombosit", "10^3/uL", value=267.0)
+        assert result["found"] is True
+        assert result["converted_value"] == 267000.0

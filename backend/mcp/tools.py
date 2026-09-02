@@ -7,9 +7,9 @@ from utils.validators import validate_lab_fields
 logger = logging.getLogger(__name__)
 
 
-def reference_range_lookup(test_name: str, unit: str) -> dict:
+def reference_range_lookup(test_name: str, unit: str, value: float | None = None) -> dict:
     """MCP tool: Look up reference range for a lab test."""
-    return reference_service.lookup(test_name, unit)
+    return reference_service.lookup(test_name, unit, value=value)
 
 
 def validate_lab_result(test_name: str, value: float, unit: str) -> dict:
@@ -18,7 +18,7 @@ def validate_lab_result(test_name: str, value: float, unit: str) -> dict:
     if not valid:
       return {"valid": False, "test_name": test_name, "message": error}
 
-    ref = reference_service.lookup(test_name, unit)
+    ref = reference_service.lookup(test_name, unit, value=value)
     if not ref.get("found"):
       if ref.get("unit_mismatch"):
         return {"valid": False, "test_name": test_name, "message": ref["message"]}

@@ -1,0 +1,28 @@
+date,test_name,original_test_name,value,unit,reference_range,status,min_reference,max_reference,comment,recommended_followup,app_test_key,is_numeric
+2025-08-12,ferritin,Ferritin,28.9,ug/L,15-150,Normal,15.0,150.0,Demir depoları alt-orta seviyede,Demir açısından zengin beslenme,,True
+2025-08-12,glikozile hemoglobin (hba1c),Glikozile Hemoglobin (HbA1c),5.0,%,4.0-6.0,Normal,4.0,6.0,Kan şekeri uzun dönem ortalaması iyi,Mevcut düzeni koruma,,True
+2025-08-12,total ige,Total IgE,1.73,KU/L,0.1-100,Normal,0.1,100.0,Alerji riski düşük,Takip gerekmez,,True
+2025-08-12,i̇nsülin,İnsülin,9.42,mU/L,2.6-24.9,Normal,2.6,24.9,İnsülin normal,Mevcut düzeni koruma,,True
+2025-08-12,serbest t4,Serbest T4,1.14,ng/dL,0.87-1.70,Normal,0.87,1.7,Tiroid fonksiyonu normal,Rutin kontrol,,True
+2025-08-12,ürobilinojen (strip),Ürobilinojen (Strip),,mg/dL,Normal,Normal,,,Karaciğer fonksiyonu normal,Takip gerekmez,,False
+2025-08-12,protein (strip),Protein (Strip),,mg/dL,Negatif,Normal,,,Protein kaçağı yok,Takip gerekmez,,False
+2025-08-12,ph (strip),pH (Strip),6.0,-,5-9,Normal,5.0,9.0,pH normal,Takip gerekmez,,True
+2025-08-12,nitrit (strip),Nitrit (Strip),,-,Negatif,Normal,,,İdrarda nitrit yok,Takip gerekmez,,False
+2025-08-12,lökosit (strip),Lökosit (Strip),,Leu/uL,Negatif,Normal,,,Lökosit yok,Takip gerekmez,,False
+2025-08-12,keton (strip),Keton (Strip),,mg/dL,Negatif,Normal,,,Ketoz yok,Takip gerekmez,,False
+2025-08-12,glukoz (strip),Glukoz (Strip),,mg/dL,Negatif,Normal,,,Şeker yok,Takip gerekmez,,False
+2025-08-12,eritrosit (strip),Eritrosit (Strip),,-,Negatif,Yüksek,,,"İdrarda eritrosit var, kontrol önerilir",Tekrar idrar tahlili önerilir,,False
+2025-08-12,dansite (strip),Dansite (Strip),1.02,-,1.010-1.030,Normal,1.01,1.03,Dansite normal,Takip gerekmez,,True
+2025-08-12,bilirubin (strip),Bilirubin (Strip),,mg/dL,Negatif,Normal,,,Safra pigmenti yok,Takip gerekmez,,False
+2025-08-12,trombosit,Trombosit,267.0,10^3/uL,150-450,Normal,150.0,450.0,Pıhtılaşma hücreleri normal,Rutin kontrol,platelet count,True
+2025-08-12,lökosit,Lökosit,6.37,10^3/uL,5-10.6,Normal,5.0,10.6,Bağışıklık hücreleri normal,Rutin kontrol,wbc,True
+2025-08-12,hemoglobin,Hemoglobin,12.9,g/dL,12-15,Normal,12.0,15.0,Anemi yok,Rutin kontrol,hemoglobin,True
+2025-08-12,eritrosit,Eritrosit,4.55,10^6/uL,3.8-5.2,Normal,3.8,5.2,Kırmızı kan hücreleri normal,Rutin kontrol,,True
+2025-08-12,rdw-sd,RDW-SD,39.3,fL,36.4-46.3,Normal,36.4,46.3,Eritrosit dağılım genişliği normal,Rutin kontrol,,True
+2025-08-12,rdw,RDW,12.2,%,11.5-14.5,Normal,11.5,14.5,Eritrosit dağılım oranı normal,Rutin kontrol,,True
+2025-08-12,pdw,PDW,11.7,fL,9.8-16.1,Normal,9.8,16.1,Trombosit dağılımı normal,Rutin kontrol,,True
+2025-08-12,pct,PCT,0.27,%,0.17-0.38,Normal,0.17,0.38,Trombosit hacim oranı normal,Rutin kontrol,,True
+2025-08-12,nötrofil%,Nötrofil%,68.9,%,50-70,Normal,50.0,70.0,Nötrofil yüzdesi normal,Rutin kontrol,,True
+2025-08-12,monosit%,Monosit%,6.1,%,2-11,Normal,2.0,11.0,Monosit yüzdesi normal,Rutin kontrol,,True
+2025-08-12,lenfosit%,Lenfosit%,23.1,%,18-42,Normal,18.0,42.0,Lenfosit yüzdesi normal,Rutin kontrol,,True
+2025-08-12,hematokrit,Hematokrit,40.0,%,35-49,Normal,35.0,49.0,Hematokrit değeri normal,Rutin kontrol,,True

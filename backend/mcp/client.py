@@ -19,9 +19,9 @@ logger = logging.getLogger(__name__)
 class LabMCPClient:
     """Client that invokes MCP laboratory tools."""
 
-    async def reference_range_lookup(self, test_name: str, unit: str) -> dict:
+    async def reference_range_lookup(self, test_name: str, unit: str, value: float | None = None) -> dict:
         logger.info("MCP client: reference_range_lookup(%s, %s)", test_name, unit)
-        return reference_range_lookup(test_name, unit)
+        return reference_range_lookup(test_name, unit, value=value)
 
     async def validate_lab_result(self, test_name: str, value: float, unit: str) -> dict:
         logger.info("MCP client: validate_lab_result(%s, %s, %s)", test_name, value, unit)

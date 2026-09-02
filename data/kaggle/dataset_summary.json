@@ -1,0 +1,12 @@
+{
+  "source_url": "https://www.kaggle.com/datasets/pinuto/laboratory-test-results-anonymized-dataset",
+  "source_file": "lab_test_results_public.csv",
+  "total_rows": 27,
+  "numeric_rows": 19,
+  "unique_tests": 27,
+  "mappable_tests": 3,
+  "status_counts": {
+    "Normal": 26,
+    "Yüksek": 1
+  }
+}

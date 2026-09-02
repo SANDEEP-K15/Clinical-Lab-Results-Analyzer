@@ -47,7 +47,7 @@ class LabAgent:
         if not validation.get("valid"):
             raise ValueError(validation.get("message", "Invalid lab result"))
 
-        ref = await mcp_client.reference_range_lookup(lab.test_name, lab.unit)
+        ref = await mcp_client.reference_range_lookup(lab.test_name, lab.unit, lab.value)
 
         if not ref.get("found"):
             if ref.get("unit_mismatch"):
@@ -61,10 +61,12 @@ class LabAgent:
                 "classification_reason": "No configured reference range was found for this test.",
             }
 
+        classify_value = ref.get("converted_value", lab.value)
+
         classification = await mcp_client.classify_lab_result(
             lab.test_name,
-            lab.value,
-            lab.unit,
+            classify_value,
+            ref["unit"],
             ref["low"],
             ref["high"],
             ref.get("critical_low"),
@@ -78,10 +80,16 @@ class LabAgent:
             source=ref["source"],
         )
 
+        display_value = lab.value
+        display_unit = lab.unit
+        if ref.get("converted_value") is not None and ref["converted_value"] != lab.value:
+            display_value = ref["converted_value"]
+            display_unit = ref["unit"]
+
         return {
             "test_name": lab.test_name,
-            "value": lab.value,
-            "unit": lab.unit,
+            "value": display_value,
+            "unit": display_unit,
             "reference_range": reference_range,
             "severity": classification["classification"],
             "classification_reason": classification["reason"],

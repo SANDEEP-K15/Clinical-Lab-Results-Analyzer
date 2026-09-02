@@ -8,6 +8,11 @@ def normalize_test_name(test_name: str) -> str:
     return normalized
 
 
+def normalize_unit(unit: str) -> str:
+    """Normalize unit string for comparison."""
+    return unit.strip().lower().replace("µ", "u")
+
+
 def validate_lab_fields(test_name: str, value: float | None, unit: str) -> tuple[bool, str | None]:
     """Validate basic lab result fields."""
     if not test_name or not test_name.strip():
