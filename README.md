@@ -27,6 +27,17 @@ Healthcare providers need to quickly identify abnormal lab results, understand t
 - MCP server with laboratory analysis tools
 - Reference range lookup from configurable JSON database
 
+## Demo Screen Short
+<img width="944" height="475" alt="Screenshot 2026-09-02 143239" src="https://github.com/user-attachments/assets/4bc827a2-f95a-4594-99a7-81134389bc3e" />
+<img width="918" height="476" alt="Screenshot 2026-09-02 143325" src="https://github.com/user-attachments/assets/3636e2c9-5632-49f9-ab4b-b2652f702c5b" />
+<img width="536" height="413" alt="Screenshot 2026-09-02 143336" src="https://github.com/user-attachments/assets/83497a3a-b9c9-4e81-a1e2-c1692c30b324" />
+<img width="547" height="415" alt="Screenshot 2026-09-02 143345" src="https://github.com/user-attachments/assets/f27ab7fc-25f7-4e2c-84ca-eeaaacc08492" />
+<img width="533" height="434" alt="Screenshot 2026-09-02 143353" src="https://github.com/user-attachments/assets/6161a13e-85f4-44a2-b3be-5a06c4f8a19a" />
+<img width="553" height="395" alt="Screenshot 2026-09-02 143402" src="https://github.com/user-attachments/assets/484170b3-afd4-4808-a90c-b67252a6b662" />
+<img width="540" height="389" alt="Screenshot 2026-09-02 143410" src="https://github.com/user-attachments/assets/3ca19d61-7e85-46ba-ad29-64af094a0a17" />
+<img width="548" height="425" alt="Screenshot 2026-09-02 143419" src="https://github.com/user-attachments/assets/997cb079-0cff-422c-be23-3934e7894198" />
+
+
 ## Architecture
 
 ```mermaid
